@@ -1,0 +1,133 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+:root {
+    --cell-size: 100px;
+    --mark-size: calc(var(--cell-size)*.9);
+}
+
+section {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main.container {
+    background-color: black;
+    width: auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+    align-content: center;
+    gap: 1px;
+}
+
+main .cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    background-color: white;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main .cell.X,
+main .cell.O {
+    cursor: not-allowed;
+}
+
+main .cell.X::before,
+main .cell.X::after,
+main.X .cell:not(.X):not(.O):hover::before,
+main.X .cell:not(.X):not(.O):hover::after {
+    content: "";
+    width: calc(var(--mark-size)*.15);
+    height: var(--mark-size);
+    background-color: black;
+    position: absolute;
+
+}
+
+
+main .cell.X::after,
+main.X .cell:not(.X):not(.O):hover::after {
+    transform: rotate(45deg);
+}
+
+main .cell.X::before,
+main.X .cell:not(.X):not(.O):hover::before {
+    transform: rotate(-45deg);
+}
+
+main .cell.O::before,
+main .cell.O::after,
+main.O .cell:not(.X):not(.O):before,
+main.O .cell:not(.X):not(.O):hover::after {
+    content: "";
+    border-radius: 50%;
+    background-color: black;
+    width: var(--mark-size);
+    height: var(--mark-size);
+    position: absolute;
+}
+
+main .cell.cell.O::after,
+main.O .cell:not(.X):not(.O):hover::after {
+    width: calc(var(--mark-size)*.7);
+    height: calc(var(--mark-size)*.7);
+    background-color: white;
+}
+
+main.X .cell:not(.X):not(.O):hover::before,
+main.X .cell:not(.X):not(.O):hover::after,
+main.O .cell:not(.X):not(.O):hover::before {
+    background-color: lightgray;
+}
+
+.endGameScreen {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, .9);
+    color: white;
+    font-size: 5em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.endGameScreen button {
+    font-size: 3rem;
+    padding: .25em .5em;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
+
+.endGameScreen button:hover {
+    color: white;
+    background-color: black;
+    border-color: white;
+}
+
+.endGameScreen.show {
+    display: flex;
+}
