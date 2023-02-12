@@ -74,7 +74,7 @@ main.X .cell:not(.X):not(.O):hover::before {
 
 main .cell.O::before,
 main .cell.O::after,
-main.O .cell:not(.X):not(.O):before,
+main.O .cell:not(.X):not(.O):hover:before,
 main.O .cell:not(.X):not(.O):hover::after {
     content: "";
     border-radius: 50%;
@@ -84,7 +84,7 @@ main.O .cell:not(.X):not(.O):hover::after {
     position: absolute;
 }
 
-main .cell.cell.O::after,
+main .cell.O::after,
 main.O .cell:not(.X):not(.O):hover::after {
     width: calc(var(--mark-size)*.7);
     height: calc(var(--mark-size)*.7);
@@ -107,7 +107,7 @@ main.O .cell:not(.X):not(.O):hover::before {
     color: white;
     font-size: 5em;
 
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     flex-direction: column;
