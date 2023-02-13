@@ -1,5 +1,21 @@
 const game = (() => {
   let playerTurn = false;
+  let currentClass = "X";
+
+  const winCases =[
+    [0,1,2], [3,4,5], [6,7,8],
+    [0,3,6], [1,4,7], [2,5,8],
+    [0,4,8], [2,4,6]
+];
+
+//check win
+const checkWin = function(cell){
+   return winCases.some( comb => {
+   return comb.every(ele => {
+   return cell[ele].classList.contains(currentClass);
+   });
+  });
+}
   const setPlayerTurn = (cell) => {
     cell.addEventListener('click', function () {
       //add class to cell on click(X,O)
@@ -8,8 +24,9 @@ const game = (() => {
       } else {
         cell.classList.add('O');
       }
-      //check for win or tie
 
+      
+      currentClass = playerTurn ? "O": "X";
       playerTurn = !playerTurn; //switch turn
     });
   };
@@ -28,11 +45,14 @@ const game = (() => {
       }
     });
   }
+
   return {
     setPlayerTurn,
     setHover,
+    checkWin,
   };
 })();
+
 
 const boardHandle = (() => {
   //create board
@@ -56,8 +76,11 @@ const boardHandle = (() => {
     board.forEach((cell) => {
       game.setPlayerTurn(cell);
       game.setHover(container);
-
-      //set hover state
+    });
+    container.addEventListener("click", () => {
+      if (game.checkWin(board)){
+        document.querySelector(".endGameScreen").classList.add("show")
+      }
     });
   };
 
