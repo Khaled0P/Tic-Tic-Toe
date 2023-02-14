@@ -15,7 +15,7 @@ body {
     --mark-size: calc(var(--cell-size)*.9);
 }
 
-section {
+section.mainScreen {
     width: 100vw;
     height: 100vh;
     padding-top: 6rem;
