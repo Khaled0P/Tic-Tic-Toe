@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Julee&display=swap');
+
 *,
 *::after,
 *::before {
@@ -16,10 +18,26 @@ body {
 section {
     width: 100vw;
     height: 100vh;
-
+    padding-top: 6rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+
+h1.heading {
+    font-family: 'Julee', cursive, sans-serif;
+    font-size: 7rem;
+    margin-top: 15px;
+    position: absolute;
+    right: 50%;
+    top: 10px;
+    transform: translateX(50%);
+    background: linear-gradient(to right, #f32170,
+            #ff6b08, #cf23cf, #eedd44);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
 }
 
 main.container {
@@ -112,6 +130,7 @@ main.O .cell:not(.X):not(.O):hover::before {
     align-items: center;
     flex-direction: column;
 }
+
 
 .endGameScreen button {
     font-size: 3rem;
